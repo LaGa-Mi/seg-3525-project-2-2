@@ -5,12 +5,13 @@ import { Button } from "react-bootstrap";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-const CalendarInput = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const CalendarInput = (props) => {
+  const [selectedDate, setSelectedDate] = useState(props.date);
   const datePickerRef = useRef(null);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    props.changeDate(date);
   };
 
   const handleGoToToday = () => {
