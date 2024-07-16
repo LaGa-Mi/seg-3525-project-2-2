@@ -121,7 +121,7 @@ export default function BookNow(props) {
                             {[{ name: "Yard Work" }, { name: "Car Washing" }, { name: "Dog Walking" }].map((radio, index) => {
                                 return (
                                     <div className="d-inline mx-5" key={index}>
-                                        <label className="me-4 mb-4">{radio.name}</label>
+                                        <label className="me-4 mb-4" style={{fontSize:"2rem"}}>{radio.name}</label>
                                         <input
                                         type="radio"
                                         name="site_name"
@@ -136,7 +136,7 @@ export default function BookNow(props) {
                             }
                         </div>
                         <Dropdown style={{ width: "70%" }} onSelect={onServiceSelect}>
-                            <Dropdown.Toggle variant="secondary" id="service" style={{ width: "100%" }}>{bookingInfo[SERVICE]}</Dropdown.Toggle>
+                            <Dropdown.Toggle variant="secondary" id="service" style={{ width: "100%", fontSize:"2rem"}}>{bookingInfo[SERVICE]}</Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {[[], ["Mowing", "Hedge Trimming"], ["Basic Wash"], ["Walk"]][bookingInfo[CATEGORY]].map((elem, index) => {
                                     return (
@@ -222,25 +222,20 @@ export default function BookNow(props) {
     return (
         <>
             <PageTop
-                h1="KeywordsKeywordsKeywords"
-                h2="SloganSloganSlogan"
-                img={require("../resources/placeholder.png")}
-                alt=""
-                source=""
-                active=""
+                noTop={true}
             />
-            <Container className="mt-5">
+            <Container style={{marginTop:"100px"}}>
                 <h1 className="display-1">Book With Us Today !</h1>
                 <LinearProgression nodes={nodes} setNode={setNode} info={bookingInfo} infoChange={setBookingInfo}/>
                 <div className="d-flex border p-3 align-items-center flex-column">
                     <Form className="mb-4">
                         {nodeToInput()}
                     </Form>
-                    <div className="d-flex justify-content-between" style={{ width: "70%" }}>
-                        <button onClick={prevNode} className="btn btn-secondary">Prev</button>
+                    <div className="d-flex" style={{ width: "70%" }}>
+                        {nodes[0][0] !== ACTIVE ? <button onClick={prevNode} className="btn btn-secondary me-auto" style={{fontSize:"2rem"}}>Prev</button> : ""}
                         {nodes[3][0] === ACTIVE ?
-                            <button onClick={bookEnd} className="btn btn-secondary">Book</button> :
-                            <button onClick={nextNode} className="btn btn-secondary">Next</button>}
+                            <button onClick={bookEnd} className="btn btn-secondary ms-auto" style={{fontSize:"2rem"}}>Book</button> :
+                            <button onClick={nextNode} className="btn btn-secondary ms-auto" style={{fontSize:"2rem"}}>Next</button>}
                     </div>
                 </div>
             </Container>

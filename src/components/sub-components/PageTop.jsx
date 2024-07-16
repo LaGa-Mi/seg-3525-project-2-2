@@ -41,10 +41,11 @@ export default function PageTop(props) {
 
     return (
         <>
-        <MainNavbar active={props.active}/>
+        <MainNavbar active={props.active} alwaysOn={true}/>
+        {props.noTop ? "" :
         <div id="main-img" className="container" style={{width:"100%", height:pageTopHeight}}>
             {props.arr ? makeCarousel() : makeStillImage()}
-        </div>
+        </div>}
         <script src={require("../../js/scrollWatcher.js")}></script>
         </>
     )

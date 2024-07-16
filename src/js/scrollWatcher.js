@@ -5,7 +5,7 @@ const scrollObs = () => {
         rootMargin: "-50px 0px 0px 0px"
     };
 
-    if (mainImg === null) {console.log("null");}
+    if (mainImg === null) {mainNavbar.classList.add("sticking");}
 
     const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
