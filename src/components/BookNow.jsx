@@ -10,23 +10,15 @@ import LinearProgression from "./sub-components/LinearProgression.jsx"
 
 const DONE = 0, ACTIVE = 1, NEXT = 2, LOCKED = 3;
 const NONE = 0, LOGIN = 1/*, SIGNUP = 2, CONFIRM = 3*/;
-const CATEGORY = 0, SERVICE = 1, DATE = 2, TIME = 3, MAKE_RECURRING = 4;
+const CATEGORY = 0, SERVICE = 1, DATE = 2, TIME = 3, MAKE_RECURRING = 4, RECDATE = 5, RECTIME = 6, RECOCC = 7, ADDRESS = 8, POSTAL = 9;
+const defaultNodeValues = [[ACTIVE, NEXT], [NEXT, NEXT], [LOCKED, LOCKED], [NEXT, NEXT]];
 
 export default function BookNow(props) {
-    const [nodes, setNodes] = useState([[ACTIVE, NEXT], [NEXT, NEXT], [LOCKED, LOCKED], [DONE, DONE]])
+    const [nodes, setNodes] = useState(defaultNodeValues)
     const [bookingState, setBookingState] = useState(NONE);
-    const [bookingInfo, setBookingInfo] = useState([0, "Service", new Date(), "Time", false]);
+    const [bookingInfo, setBookingInfo] = useState([0, "Service", new Date(), "Time", false, new Date(), "Time", "Occurence", "", ""]);
     const [showAlert, setShowAlert] = useState(false);
 
-    const onchangeServiceCategory = (e) => {
-        changeInfo(CATEGORY, e.target.value);
-    };
-    const onServiceSelect = (e) => {
-        changeInfo(SERVICE, e);
-    }
-    const onTimeSelect = (e) => {
-        changeInfo(TIME, e);
-    }
     const makeReccuringChanged = (e) => {
         changeInfo(MAKE_RECURRING, e.target.checked);
         if (!bookingInfo[MAKE_RECURRING]) {
@@ -35,9 +27,10 @@ export default function BookNow(props) {
             lockNode(2);
         }
     }
-    /*const resetNodes = () => {
-        setNodes([ACTIVE, NEXT, LOCKED, NEXT]);
-    }*/
+    const resetNodes = () => {
+        setNodes(defaultNodeValues);
+        setBookingInfo([0, "Service", new Date(), "Time", false, new Date(), "Time", "Occurence"]);
+    }
     const setNode = (indSet, val) => {
         if (nodes[indSet][0] === LOCKED) return nodes;
         setNodes(nodes.map((elem, index) => {
@@ -90,7 +83,7 @@ export default function BookNow(props) {
         if (nodes[indUnlock][0] !== LOCKED) return nodes;
         setNodes(nodes.map((elem, index) => {
             if (index === indUnlock) {
-                return [NEXT, NEXT];
+                return elem[1] === LOCKED ? [NEXT, NEXT] : [elem[1], elem[1]];
             } else {
                 return elem;
             }
@@ -100,7 +93,7 @@ export default function BookNow(props) {
         if (nodes[indUnlock][0] === LOCKED) return nodes;
         setNodes(nodes.map((elem, index) => {
             if (index === indUnlock) {
-                return [LOCKED, LOCKED];
+                return [LOCKED, elem[1]];
             } else {
                 return elem;
             }
@@ -121,26 +114,26 @@ export default function BookNow(props) {
                             {[{ name: "Yard Work" }, { name: "Car Washing" }, { name: "Dog Walking" }].map((radio, index) => {
                                 return (
                                     <div className="d-inline mx-5" key={index}>
-                                        <label className="me-4 mb-4" style={{fontSize:"2rem"}}>{radio.name}</label>
+                                        <label className="me-4 mb-4" style={{fontSize:"1.5rem"}}>{radio.name}</label>
                                         <input
                                         type="radio"
                                         name="site_name"
                                         value={index + 1}
                                         checked={Number(bookingInfo[CATEGORY]) === (index + 1)}
-                                        onChange={onchangeServiceCategory}
-                                        style={{transform:"scale(2)"}}
+                                        onChange={() => {changeInfo(CATEGORY, index + 1)}}
+                                        style={{transform:"scale(1.5)"}}
                                         ></input>
                                     </div>
                                 )
                             })
                             }
                         </div>
-                        <Dropdown style={{ width: "70%" }} onSelect={onServiceSelect}>
-                            <Dropdown.Toggle variant="secondary" id="service" style={{ width: "100%", fontSize:"2rem"}}>{bookingInfo[SERVICE]}</Dropdown.Toggle>
+                        <Dropdown style={{ width: "70%" }} onSelect={(e) => {changeInfo(SERVICE, e)}}>
+                            <Dropdown.Toggle variant="secondary" id="service" style={{ width: "100%", fontSize:"1.5rem"}}>{bookingInfo[SERVICE]}</Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {[[], ["Mowing", "Hedge Trimming"], ["Basic Wash"], ["Walk"]][bookingInfo[CATEGORY]].map((elem, index) => {
                                     return (
-                                        <Dropdown.Item key={index} eventKey={elem} style={{fontSize:"2rem"}}>{elem}</Dropdown.Item>
+                                        <Dropdown.Item key={index} eventKey={elem} style={{fontSize:"1.5rem"}}>{elem}</Dropdown.Item>
                                     )
                                 })}
                             </Dropdown.Menu>
@@ -153,7 +146,7 @@ export default function BookNow(props) {
                 <Row style={{height:"400px"}}>
                     <Col className="d-flex flex-column align-items-center justify-content-center"><CalendarInput date={bookingInfo[DATE]} changeDate={(date) => {changeInfo(DATE, date);}}/></Col>
                     <Col className="d-flex flex-column align-items-center justify-content-center">
-                        <Dropdown className="mb-2" style={{ width: "70%" }} onSelect={onTimeSelect}>
+                        <Dropdown className="mb-2" style={{ width: "70%" }} onSelect={(e) => {changeInfo(TIME, e)}}>
                             <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{ width: "100%" }}>{bookingInfo[TIME]}</Dropdown.Toggle>
 
                             <Dropdown.Menu>
@@ -176,13 +169,42 @@ export default function BookNow(props) {
         } else if (nodes[2][0] === ACTIVE) {
             return (
                 <Row style={{height:"400px"}}>
-                    <h1>This is where I would have put my page to specify recurring meetings</h1>
+                    <Col className="d-flex flex-column align-items-center justify-content-center"><CalendarInput date={bookingInfo[DATE]} changeDate={(date) => {changeInfo(RECDATE, date);}}/></Col>
+                    <Col className="d-flex flex-column align-items-center justify-content-center">
+                        <Dropdown className="mb-2" onSelect={(e) => {changeInfo(RECTIME, e)}}>
+                            <Dropdown.Toggle variant="secondary" id="time-dropdown" style={{ width: "100%" }}>{bookingInfo[RECTIME]}</Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                {["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"].map((elem, index) => {
+                                    return (
+                                        <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
+                                    )
+                                })}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <Dropdown className="mb-2" onSelect={(e) => {changeInfo(RECOCC, e)}}>
+                            <Dropdown.Toggle variant="secondary" id="occurence-dropdown" style={{ width: "100%" }}>{bookingInfo[RECOCC]}</Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                {["Twice a week", "Every week", "Every 2 weeks", "Every month", "Every year"].map((elem, index) => {
+                                    return (
+                                        <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
+                                    )
+                                })}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Col>
                 </Row>
             );
         } else {
             return (
-                <Row style={{height:"400px"}}>
-                    <h1>This is where I would have put my page to confirm some final details</h1>
+                <Row className="d-flex align-items-center" style={{height:"400px"}}>
+                    <div className="input-group mb-3" style={{height:"3rem"}}>
+                        <input onChange={(e) => {changeInfo(ADDRESS, e.target.value)}} type="text" className="form-control" placeholder="Address" aria-label="Address" aria-describedby="Address" defaultValue={bookingInfo[ADDRESS]}/>
+                    </div>
+                    <div className="input-group mb-3" style={{height:"3rem"}}>
+                        <input onChange={(e) => {changeInfo(POSTAL, e.target.value)}} type="text" className="form-control" placeholder="Postal Code" aria-label="Postal Code" aria-describedby="Postal Code" defaultValue={bookingInfo[POSTAL]}/>
+                    </div>
                 </Row>
             );
         }
@@ -209,6 +231,26 @@ export default function BookNow(props) {
                 if (!((bookingInfo[DATE].getDay() === 6) || (bookingInfo[DATE].getDay()  === 0))) setNode(1, DONE);
                 else setNode(1, NEXT);
                 break;
+            case RECDATE:
+                if (!((val.getDay() === 6) || (val.getDay()  === 0)) && (bookingInfo[RECTIME] !== "Time") && (bookingInfo[RECOCC] !== "Occurence")) setNode(2, DONE);
+                else setNode(2, NEXT);
+                break;
+            case RECTIME:
+                if (!((bookingInfo[RECDATE].getDay() === 6) || (bookingInfo[RECDATE].getDay()  === 0)) && (bookingInfo[RECOCC] !== "Occurence")) setNode(2, DONE);
+                else setNode(2, NEXT);
+                break;
+            case RECOCC:
+                if (!((bookingInfo[RECDATE].getDay() === 6) || (bookingInfo[RECDATE].getDay()  === 0)) && (bookingInfo[RECTIME] !== "Time")) setNode(2, DONE);
+                else setNode(2, NEXT);
+                break;
+            case ADDRESS:
+                if (bookingInfo[POSTAL] !== "") setNode(3, DONE);
+                else setNode(3, NEXT);
+                break;
+            case POSTAL:
+                if (bookingInfo[ADDRESS] !== "") setNode(3, DONE);
+                else setNode(3, NEXT);
+                break;
             default:
                 break;
         }
@@ -223,6 +265,8 @@ export default function BookNow(props) {
         <>
             <PageTop
                 noTop={true}
+                language={props.language}
+                setLanguage={props.setLanguage}
             />
             <Container style={{marginTop:"100px"}}>
                 <h1 className="display-1">Book With Us Today !</h1>
@@ -232,15 +276,15 @@ export default function BookNow(props) {
                         {nodeToInput()}
                     </Form>
                     <div className="d-flex" style={{ width: "70%" }}>
-                        {nodes[0][0] !== ACTIVE ? <button onClick={prevNode} className="btn btn-secondary me-auto" style={{fontSize:"2rem"}}>Prev</button> : ""}
+                        {nodes[0][0] !== ACTIVE ? <button onClick={prevNode} className="btn btn-secondary me-auto" style={{fontSize:"1.5rem"}}>Prev</button> : ""}
                         {nodes[3][0] === ACTIVE ?
-                            <button onClick={bookEnd} className="btn btn-secondary ms-auto" style={{fontSize:"2rem"}}>Book</button> :
-                            <button onClick={nextNode} className="btn btn-secondary ms-auto" style={{fontSize:"2rem"}}>Next</button>}
+                            <button onClick={bookEnd} className={"btn btn-secondary ms-auto" + (isBookingInfoComplete() ? "" : " disabled")} style={{fontSize:"1.5rem"}}>Book</button> :
+                            <button onClick={nextNode} className="btn btn-secondary ms-auto" style={{fontSize:"1.5rem"}}>Next</button>}
                     </div>
                 </div>
             </Container>
             <PageBottom />
-            <BookingPopups popup={bookingState} stateChange={setBookingState} bookingInfo={bookingInfo}/>
+            <BookingPopups popup={bookingState} stateChange={setBookingState} bookingInfo={bookingInfo} reset={resetNodes}/>
             <Alert show={showAlert} variant="warning" style={{position:"fixed", top:"10%", right:"0"}}>
                 <Alert.Heading>Incomplete Booking Information</Alert.Heading>
                 <p>Some information is still needed to complete the booking process.</p>

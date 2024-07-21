@@ -8,41 +8,48 @@ import ContactConfirm from "./sub-components/ContactConfirm.jsx"
 
 export default function ContactUs(props) {
     const [showConfirm, setShowConfirm] = useState(false);
+    const [formData, setFormData] = useState({formName:"", formEmail:"", formSubject:"", formMessage:""});
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (e.currentTarget.checkValidity()) {
+            setShowConfirm(true);
+        }
+        e.currentTarget.reset();
+    }
 
     return (
         <>
         <PageTop
-            h1="KeywordsKeywordsKeywords"
-            h2="SloganSloganSlogan"
-            img={require("../resources/placeholder.png")}
-            alt=""
-            source=""
+            noTop={true}
             active="contactUs"
+            language={props.language}
+            setLanguage={props.setLanguage}
         />
-        <Container className="mt-5">
+        <Container style={{marginTop:"100px"}}>
             <h1 className="my-4">Contact Us</h1>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formName">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter your name" />
+                <Form.Control type="text" placeholder="Enter your name" required onChange={(e) => {setFormData({...formData, formName:e.target.value}) ; console.log(e.target.value);}}/>
                 </Form.Group>
 
                 <Form.Group controlId="formEmail" className="mt-3">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter your email" />
+                <Form.Control type="email" placeholder="Enter your email" required onChange={(e) => {setFormData({...formData, formEmail:e.target.value}); console.log(e.target.value);}}/>
                 </Form.Group>
 
                 <Form.Group controlId="formSubject" className="mt-3">
                 <Form.Label>Subject</Form.Label>
-                <Form.Control type="text" placeholder="Enter the subject" />
+                <Form.Control type="text" placeholder="Enter the subject" required onChange={(e) => {setFormData({...formData, formSubject:e.target.value})}}/>
                 </Form.Group>
 
                 <Form.Group controlId="formMessage" className="mt-3">
                 <Form.Label>Message</Form.Label>
-                <Form.Control as="textarea" rows={5} placeholder="Enter your message" />
+                <Form.Control as="textarea" rows={5} placeholder="Enter your message" required onChange={(e) => {setFormData({...formData, formMessage:e.target.value})}}/>
                 </Form.Group>
 
-                <Button variant="secondary" onClick={() => {setShowConfirm(true)}} className="mt-3">Submit</Button>
+                <Button variant="secondary" type="submit" className="mt-3">Submit</Button>
             </Form>
             <Row className="mt-5">
                 <Col md={6}>
@@ -57,7 +64,7 @@ export default function ContactUs(props) {
         </Container>
         <PageBottom/>
         {showConfirm ?
-        <ContactConfirm stateChange={setShowConfirm}/> :
+        <ContactConfirm stateChange={setShowConfirm} data={formData}/> :
         <></>}
         </>
     )

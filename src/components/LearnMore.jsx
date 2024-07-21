@@ -199,6 +199,8 @@ export default function LearnMore(props) {
             alt=""
             source=""
             active="learnMore"
+            language={props.language}
+            setLanguage={props.setLanguage}
         />
         <div className="d-flex m-5">
             <div style={{width:"20%"}}>
@@ -307,7 +309,7 @@ export default function LearnMore(props) {
                         image={elem[1]}
                         description={elem[2]}
                         publisher={elem[3]}
-                        display={displayMedia(elem[5], elem[6], elem[7], elem[8])}
+                        display={displayMedia(elem[4], elem[6], elem[7], elem[8])}
                         isVideo={elem[4] === "Video"}
                         />
                     )

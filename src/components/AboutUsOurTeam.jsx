@@ -10,12 +10,16 @@ export default function AboutUsOurTeam(props) {
         <PageTop
             h1="Meet Our Team"
             h2="The students that make it all happen!"
-            img={require("../resources/placeholder.png")}
-            alt=""
-            source=""
+            img={require("../resources/highschool.jpg")}
+            alt="page background"
+            source="https://upload.wikimedia.org/wikipedia/commons/3/39/Hibbing_High_School_2014.jpg"
             active="aboutUs/ourTeam"
+            language={props.language}
+            setLanguage={props.setLanguage}
         />
         <Container className="mt-5">
+            <h1 className="display-1">Our Team</h1>
+            <p>Our team consists of enthusiastic and responsible students from various academic backgrounds. Each member is carefully selected and trained to provide the best service possible. We take pride in our work and treat every task with the utmost care and attention to detail.</p>
             <h1 className="display-4">Yard Work<span className="style-line-long"></span></h1>
             <ExpertCard
                 name="First Name Last Name"

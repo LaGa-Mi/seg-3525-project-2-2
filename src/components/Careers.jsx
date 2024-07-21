@@ -121,6 +121,8 @@ export default function Careers(props) {
             alt=""
             source=""
             active="careers"
+            language={props.language}
+            setLanguage={props.setLanguage}
         />
         <div className="d-flex m-5">
             <div style={{width:"20%"}}>

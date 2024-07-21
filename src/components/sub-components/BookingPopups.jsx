@@ -90,7 +90,7 @@ export default function BookingPopups(props) {
                                 </div>
                                 <div className='d-flex flex-column p-4'>
                                     <h1>{document.getElementById("signupFirstName")}</h1>
-                                    <button className="btn btn-primary" onClick={() => {props.stateChange(NONE)}}>Confirm</button>
+                                    <button className="btn btn-primary" onClick={() => {props.stateChange(NONE); props.reset();}}>Confirm</button>
                                 </div>
                             </div>
                         </div>

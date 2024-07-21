@@ -13,7 +13,7 @@ export default function PageTop(props) {
                     <h2 className="text-light">{props.h2}</h2>
                     {props.button ? <a className="btn btn-secondary mt-5 text-light" href={props.buttonTo}>{props.button}</a> : ""}
                 </div>
-                <img className="position-absolute top-0 start-0" src={props.img} alt={props.alt} style={{width:"100%", height:pageTopHeight, filter: "brightness(25%)", overflow:"hidden", objectFit:"cover", zIndex:"-1"}}/>
+                <img className="position-absolute top-0 start-0" src={props.img} alt="page background" style={{width:"100%", height:pageTopHeight, filter: "brightness(25%)", overflow:"hidden", objectFit:"cover", zIndex:"-1"}}/>
             </>
         );
     }
@@ -30,7 +30,7 @@ export default function PageTop(props) {
                     <h2 className="text-light">{elem.h2}</h2>
                     {elem.button ? <a className="btn btn-secondary mt-5 text-light" href={elem.buttonTo}>{elem.button}</a> : ""}
                 </div>
-                <img className="position-absolute top-0 start-0" src={elem.img} alt={elem.alt} style={{width:"100%", height:"100%", filter: "brightness(25%)", overflow:"hidden", objectFit:"cover", zIndex:"-1"}}/>
+                <img className="position-absolute top-0 start-0" src={elem.img} alt="page background" style={{width:"100%", height:"100%", filter: "brightness(25%)", overflow:"hidden", objectFit:"cover", zIndex:"-1"}}/>
             </Carousel.Item>
             )
         })}
@@ -41,12 +41,14 @@ export default function PageTop(props) {
 
     return (
         <>
-        <MainNavbar active={props.active} alwaysOn={true}/>
+        <MainNavbar active={props.active} alwaysOn={props.noTop} language={props.language} setLanguage={props.setLanguage}/>
         {props.noTop ? "" :
+        <>
         <div id="main-img" className="container" style={{width:"100%", height:pageTopHeight}}>
             {props.arr ? makeCarousel() : makeStillImage()}
-        </div>}
+        </div>
         <script src={require("../../js/scrollWatcher.js")}></script>
+        </>}
         </>
     )
 }
