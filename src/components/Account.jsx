@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap"
 
 import PageTop from "./sub-components/PageTop.jsx"
+import PageBottom from "./sub-components/PageBottom.jsx";
 
 export default function AccountOpt1(props) {
     const user = {
@@ -22,7 +23,7 @@ export default function AccountOpt1(props) {
                 language={props.language}
                 setLanguage={props.setLanguage}
             />
-            <Container style={{ marginTop: "100px" }}>
+            <Container style={{ marginTop: "100px", height:"71vh"}}>
                 <h1 className="mb-4">My Account</h1>
                 <Row>
                     <Col md={6}>
@@ -54,6 +55,7 @@ export default function AccountOpt1(props) {
                     </Col>
                 </Row>
             </Container>
+            <PageBottom/>
         </>
     )
 }
