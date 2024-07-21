@@ -193,11 +193,11 @@ export default function LearnMore(props) {
     return (
         <>
         <PageTop
-            h1="KeywordsKeywordsKeywords"
-            h2="SloganSloganSlogan"
-            img={require("../resources/placeholder.png")}
+            h1={<>“Develop a passion for learning.<br></br>If you do, you will never cease to grow.”</>}
+            h2="— Anthony J. D’Angelo"
+            img={require("../resources/library.jpg")}
             alt=""
-            source=""
+            source="https://miro.medium.com/v2/resize:fit:1200/1*6Jp3vJWe7VFlFHZ9WhSJng.jpeg"
             active="learnMore"
             language={props.language}
             setLanguage={props.setLanguage}

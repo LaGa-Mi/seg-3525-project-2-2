@@ -115,11 +115,11 @@ export default function Careers(props) {
     return (
         <>
         <PageTop
-            h1="KeywordsKeywordsKeywords"
-            h2="SloganSloganSlogan"
-            img={require("../resources/placeholder.png")}
+            h1="Careers"
+            h2="Join us today !"
+            img={require("../resources/careers.jpg")}
             alt=""
-            source=""
+            source="https://cdn.prod.website-files.com/632a1c3a87ee2760b99c5b3c/6633b2d98f727b11e3c5e475_how%20to%20make%20the%20connection%20between%20innovation%20collaboration%20and%20productivity.jpg"
             active="careers"
             language={props.language}
             setLanguage={props.setLanguage}
