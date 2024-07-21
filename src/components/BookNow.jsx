@@ -110,6 +110,7 @@ export default function BookNow(props) {
             return (
                 <Row style={{height:"400px"}}>
                     <Col className="d-flex flex-column align-items-center justify-content-center">
+                        <h1 className="mb-5">Category and Service</h1>
                         <div className="mb-3">
                             {[{ name: "Yard Work" }, { name: "Car Washing" }, { name: "Dog Walking" }].map((radio, index) => {
                                 return (
@@ -143,69 +144,78 @@ export default function BookNow(props) {
             );
         } else if (nodes[1][0] === ACTIVE) {
             return (
-                <Row style={{height:"400px"}}>
-                    <Col className="d-flex flex-column align-items-center justify-content-center"><CalendarInput date={bookingInfo[DATE]} changeDate={(date) => {changeInfo(DATE, date);}}/></Col>
-                    <Col className="d-flex flex-column align-items-center justify-content-center">
-                        <Dropdown className="mb-2" style={{ width: "70%" }} onSelect={(e) => {changeInfo(TIME, e)}}>
-                            <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{ width: "100%" }}>{bookingInfo[TIME]}</Dropdown.Toggle>
+                <div className="d-flex flex-column align-items-center justify-content-center" style={{height:"400px"}}>
+                    <h1 className="mb-4">Date and Time</h1>
+                    <Row>
+                        <Col className="d-flex flex-column align-items-center justify-content-center"><CalendarInput date={bookingInfo[DATE]} changeDate={(date) => {changeInfo(DATE, date);}}/></Col>
+                        <Col className="d-flex flex-column align-items-center justify-content-center">
+                            <Dropdown className="mb-2" style={{ width: "70%" }} onSelect={(e) => {changeInfo(TIME, e)}}>
+                                <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{ width: "100%" }}>{bookingInfo[TIME]}</Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                                {["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"].map((elem, index) => {
-                                    return (
-                                        <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
-                                    )
-                                })}
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <Form.Check
-                            type="switch"
-                            label="Make Recurring?"
-                            onChange={makeReccuringChanged}
-                            defaultChecked={bookingInfo[MAKE_RECURRING]}
-                        />
-                    </Col>
-                </Row>
+                                <Dropdown.Menu>
+                                    {["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"].map((elem, index) => {
+                                        return (
+                                            <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
+                                        )
+                                    })}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Form.Check
+                                type="switch"
+                                label="Make Recurring?"
+                                onChange={makeReccuringChanged}
+                                defaultChecked={bookingInfo[MAKE_RECURRING]}
+                            />
+                        </Col>
+                    </Row>
+                </div>
             );
         } else if (nodes[2][0] === ACTIVE) {
             return (
-                <Row style={{height:"400px"}}>
-                    <Col className="d-flex flex-column align-items-center justify-content-center"><CalendarInput date={bookingInfo[DATE]} changeDate={(date) => {changeInfo(RECDATE, date);}}/></Col>
-                    <Col className="d-flex flex-column align-items-center justify-content-center">
-                        <Dropdown className="mb-2" onSelect={(e) => {changeInfo(RECTIME, e)}}>
-                            <Dropdown.Toggle variant="secondary" id="time-dropdown" style={{ width: "100%" }}>{bookingInfo[RECTIME]}</Dropdown.Toggle>
+                <div className="d-flex flex-column align-items-center justify-content-center" style={{height:"400px"}}>
+                    <h1 className="mb-4">Recurring Date and Time</h1>
+                    <Row>
+                        <Col className="d-flex flex-column align-items-center justify-content-center"><CalendarInput date={bookingInfo[RECDATE]} changeDate={(date) => {changeInfo(RECDATE, date);}}/></Col>
+                        <Col className="d-flex flex-column align-items-center justify-content-center">
+                            <Dropdown className="mb-2" onSelect={(e) => {changeInfo(RECTIME, e)}}>
+                                <Dropdown.Toggle variant="secondary" id="time-dropdown" style={{ width: "100%" }}>{bookingInfo[RECTIME]}</Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                                {["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"].map((elem, index) => {
-                                    return (
-                                        <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
-                                    )
-                                })}
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <Dropdown className="mb-2" onSelect={(e) => {changeInfo(RECOCC, e)}}>
-                            <Dropdown.Toggle variant="secondary" id="occurence-dropdown" style={{ width: "100%" }}>{bookingInfo[RECOCC]}</Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"].map((elem, index) => {
+                                        return (
+                                            <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
+                                        )
+                                    })}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Dropdown className="mb-2" onSelect={(e) => {changeInfo(RECOCC, e)}}>
+                                <Dropdown.Toggle variant="secondary" id="occurence-dropdown" style={{ width: "100%" }}>{bookingInfo[RECOCC]}</Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                                {["Twice a week", "Every week", "Every 2 weeks", "Every month", "Every year"].map((elem, index) => {
-                                    return (
-                                        <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
-                                    )
-                                })}
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </Col>
-                </Row>
+                                <Dropdown.Menu>
+                                    {["Twice a week", "Every week", "Every 2 weeks", "Every month", "Every year"].map((elem, index) => {
+                                        return (
+                                            <Dropdown.Item key={index} eventKey={elem}>{elem}</Dropdown.Item>
+                                        )
+                                    })}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
+                    </Row>
+                </div>
             );
         } else {
             return (
-                <Row className="d-flex align-items-center" style={{height:"400px"}}>
-                    <div className="input-group mb-3" style={{height:"3rem"}}>
-                        <input onChange={(e) => {changeInfo(ADDRESS, e.target.value)}} type="text" className="form-control" placeholder="Address" aria-label="Address" aria-describedby="Address" defaultValue={bookingInfo[ADDRESS]}/>
-                    </div>
-                    <div className="input-group mb-3" style={{height:"3rem"}}>
-                        <input onChange={(e) => {changeInfo(POSTAL, e.target.value)}} type="text" className="form-control" placeholder="Postal Code" aria-label="Postal Code" aria-describedby="Postal Code" defaultValue={bookingInfo[POSTAL]}/>
-                    </div>
-                </Row>
+                <div className="d-flex flex-column align-items-center justify-content-center" style={{height:"400px"}}>
+                    <h1 className="mb-4">Location Information</h1>
+                    <Row className="d-flex align-items-center" style={{height:"400px"}}>
+                        <div className="input-group mb-3" style={{height:"3rem"}}>
+                            <input onChange={(e) => {changeInfo(ADDRESS, e.target.value)}} type="text" className="form-control" placeholder="Address" aria-label="Address" aria-describedby="Address" defaultValue={bookingInfo[ADDRESS]}/>
+                        </div>
+                        <div className="input-group mb-3" style={{height:"3rem"}}>
+                            <input onChange={(e) => {changeInfo(POSTAL, e.target.value)}} type="text" className="form-control" placeholder="Postal Code" aria-label="Postal Code" aria-describedby="Postal Code" defaultValue={bookingInfo[POSTAL]}/>
+                        </div>
+                    </Row>
+                </div>
             );
         }
     }
