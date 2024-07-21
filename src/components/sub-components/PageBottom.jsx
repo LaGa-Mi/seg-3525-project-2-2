@@ -25,6 +25,7 @@ export default function PageBottom(props) {
                     <Col className="d-flex flex-column">
                         <h2>Support</h2>
                         <a href="/contactUs" className="link-light mt-3">Contact Us</a>
+                        <a href="/FAQ" className="link-light mt-3">FAQ</a>
                     </Col>
                     <Col className="d-flex flex-column">
                         <h2>Account</h2>

@@ -18,6 +18,8 @@ import LearnMore from "../components/LearnMore";
 
 import ContactUs from "../components/ContactUs";
 
+import FAQ from "../components/FAQ";
+
 import BookNow from "../components/BookNow";
 
 import Account from "../components/Account";
@@ -47,6 +49,8 @@ export default function App() {
                 <Route path="/learnMore" element={<LearnMore language={language} setLanguage={(language) => {localStorage.setItem("lang", language); setLanguage(language);}}/>} />
 
                 <Route path="/contactUs" element={<ContactUs language={language} setLanguage={(language) => {localStorage.setItem("lang", language); setLanguage(language);}}/>} />
+
+                <Route path="/FAQ" element={<FAQ language={language} setLanguage={(language) => {localStorage.setItem("lang", language); setLanguage(language);}}/>} />
 
                 <Route path="/bookNow" element={<BookNow language={language} setLanguage={(language) => {localStorage.setItem("lang", language); setLanguage(language);}}/>} />
 

@@ -26,6 +26,7 @@ export default function MainNavbar(props) {
                         <Nav.Link href="/careers" active={props.active === "careers"}>Careers</Nav.Link>
                         <Nav.Link href="/learnMore" active={props.active === "learnMore"}>Learn More</Nav.Link>
                         <Nav.Link href="/contactUs" active={props.active === "contactUs"}>Contact Us</Nav.Link>
+                        <Nav.Link href="/FAQ" active={props.active === "FAQ"}>FAQ</Nav.Link>
                         <Nav.Link href="/bookNow" className="btn bg-secondary mx-2 align-self-start px-2 text-white">Book Now</Nav.Link>
                         <Nav.Link href="/account" active={props.active === "account"}><i className="bi bi-person-circle"></i> Account</Nav.Link>
                         <NavDropdown title={<><i className="bi bi-globe"></i> {props.language}</>} id="basic-nav-dropdown">
