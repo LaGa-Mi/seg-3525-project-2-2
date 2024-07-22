@@ -12,7 +12,7 @@ export default function ServicesCar(props) {
             h1="Car Washing"
             h2="Shine On with Our Car Washing Services"
             img={require("../resources/carWash.png")}
-            source=""
+            source="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTZnBKfS2exsbswjUHSMviU2p7fuFl7n5bz77059SMXMZAqJtmX"
             active="services/carWashing"
             language={props.language}
             setLanguage={props.setLanguage}

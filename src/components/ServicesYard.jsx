@@ -12,7 +12,7 @@ export default function ServicesYard(props) {
                 h1="Yard Work"
                 h2="Transform Your Yard with Our Expertise"
                 img={require("../resources/yardWorkbg.jpg")}
-                source=""
+                source="https://skyviewcleaning.com/wp-content/uploads/2021/01/riding-lawn-mower.jpg"
                 active="services/yardWork"
                 language={props.language}
                 setLanguage={props.setLanguage}

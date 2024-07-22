@@ -12,7 +12,7 @@ export default function ServicesDog(props) {
             h1="Dog Walking"
             h2="Happy Paws, Happy Life"
             img={require("../resources/dogWalking.png")}
-            source=""
+            source="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSMCbKisSA2FtKBTmuKG_-TiUaY3DfF-H-w529phYVf2-h3ibpT"
             active="services/dogWalking"
             language={props.language}
             setLanguage={props.setLanguage}
