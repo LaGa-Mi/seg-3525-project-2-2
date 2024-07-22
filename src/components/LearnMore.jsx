@@ -9,91 +9,99 @@ import Media from "./sub-components/Media.jsx";
 const jobs = [
     [
         "Fall Yard Work Tips",
-        require("../resources/placeholder.png"),
+        require("../resources/fallYardWorkTips.jpg"),
         "Learn essential yard work tips for maintaining your garden, lawn, and trees during the fall season.",
         "Gardening Today",
         "Article",
         "#",
         ["Yard Work"],
         ["Gardening", "Lawn Care", "Trees/Hedges"],
-        ["Fall"]
+        ["Fall"],
+        "https://www.marthastewart.com/thmb/Nv0_fKEos9FERAY8rfBZ6oOjgNE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/fall-yard-cleanup-important-for-lawn-garden-getty-0923-a52f9e8c61134458b40f5ffef72d3e2b.jpg"
     ],
     [
         "Winter Car Washing Guide",
-        require("../resources/placeholder.png"),
+        require("../resources/Winter Car Washing Guide.jpg"),
         "Discover the best practices for washing your car during the winter to prevent salt and grime buildup.",
         "Auto Care Weekly",
         "Video",
         "#",
         ["Car Washing"],
         ["Maintenance/Prevention"],
-        ["Winter"]
+        ["Winter"],
+        "https://www.theultimatefinish.co.uk/car-care-blog/images/2018/10/1024FEATURED-1.jpg"
     ],
     [
         "Best Dog Walking Routes in Spring",
-        require("../resources/placeholder.png"),
+        require("../resources/Best Dog Walking Routes in Spring.jpg"),
         "Explore the best dog walking routes to enjoy with your pet during the spring season.",
         "Pet Walks Magazine",
         "Article",
         "#",
         ["Dog Walking"],
         ["Walk Locations"],
-        ["Spring"]
+        ["Spring"],
+        "https://images.squarespace-cdn.com/content/v1/5319f970e4b0fe519416dd20/1542233932382-QMR0TQUZE8YH7696EORW/seal+bay+dog+walking+park"
     ],
     [
         "Summer Lawn Care Tips",
-        require("../resources/placeholder.png"),
+        require("../resources/Summer Lawn Care Tips.png"),
         "Keep your lawn green and healthy during the hot summer months with these expert tips.",
         "Lawn Care Monthly",
         "Article",
         "#",
         ["Yard Work"],
         ["Lawn Care"],
-        ["Summer"]
+        ["Summer"],
+        "https://lawnhiro.com/wp-content/uploads/2024/06/LH-Blog-10SummerLawnCareTips.png"
     ],    
     [
         "How to Trim Hedges in Spring",
-        require("../resources/placeholder.png"),
+        require("../resources/How to Trim Hedges in Spring.jpg"),
         "A comprehensive guide on trimming hedges effectively during the spring season for optimal growth.",
         "Gardeners' World",
         "Video",
         "#",
         ["Yard Work"],
         ["Trees/Hedges"],
-        ["Spring"]
+        ["Spring"],
+        "https://www.instanthedge.com/wp-content/uploads/2018/12/buxus-maintenance-pruning-shearing-faq.jpg"
     ],    
     [
         "Summer Dog Health Tips",
-        require("../resources/placeholder.png"),
+        require("../resources/Summer Dog Health Tips.png"),
         "Learn important health tips to keep your dog safe and healthy during the summer.",
         "Healthy Pets",
         "Article",
         "#",
         ["Dog Walking"],
         ["Dog Health"],
-        ["Summer"]
+        ["Summer"],
+        "https://www.puppyleaks.com/wp-content/uploads/2014/06/summersafety.png"
     ],    
     [
         "Hardscape Ideas for Winter",
-        require("../resources/placeholder.png"),
+        require("../resources/Hardscape Ideas for Winter.jpg"),
         "Get inspired by these hardscape design ideas to enhance your outdoor space even during the winter.",
         "Outdoor Design Journal",
         "Video",
         "#",
         ["Yard Work"],
         ["Hardscape"],
-        ["Winter"]
+        ["Winter"],
+        "https://deborahsilver.com/wp-content/uploads/2017/02/one-at-a-time-9.jpg"
     ],    
     [
         "Car Cleaning Tips for Spring",
-        require("../resources/placeholder.png"),
+        require("../resources/Car Cleaning Tips for Spring.jpg"),
         "Find out the best car cleaning tips to refresh your vehicle after the winter season.",
         "Spring Car Care",
         "Article",
         "#",
         ["Car Washing"],
         ["Cleaning"],
-        ["Spring"]
+        ["Spring"],
+        "https://static.overfuel.com/dealers/trust-auto/image/car-garage-spring-cleaning-checklist.jpg"
     ]    
 ];
 
