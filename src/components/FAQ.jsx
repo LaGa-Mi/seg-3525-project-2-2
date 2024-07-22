@@ -53,7 +53,7 @@ export default function Home(props) {
                 language={props.language}
                 setLanguage={props.setLanguage}
             />
-            <Container style={{ marginTop: "100px", height:"71vh"}}>
+            <Container style={{ marginTop: "100px", minHeight:"71vh"}}>
                 <h1 className="display-1">FAQ</h1>
                 <Form.Group controlId="search">
                     <Form.Label>Search FAQs</Form.Label>

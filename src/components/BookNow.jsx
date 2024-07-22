@@ -278,7 +278,7 @@ export default function BookNow(props) {
                 language={props.language}
                 setLanguage={props.setLanguage}
             />
-            <Container style={{marginTop:"100px", height:"71vh"}}>
+            <Container style={{marginTop:"100px", minHeight:"71vh"}}>
                 <h1 className="display-1">Book With Us Today !</h1>
                 <LinearProgression nodes={nodes} setNode={setNode} info={bookingInfo} infoChange={setBookingInfo}/>
                 <div className="d-flex border p-3 align-items-center flex-column">

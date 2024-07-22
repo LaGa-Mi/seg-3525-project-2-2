@@ -23,7 +23,7 @@ export default function AccountOpt1(props) {
                 language={props.language}
                 setLanguage={props.setLanguage}
             />
-            <Container style={{ marginTop: "100px", height:"71vh"}}>
+            <Container style={{ marginTop: "100px", minHeight:"71vh"}}>
                 <h1 className="mb-4">My Account</h1>
                 <Row>
                     <Col md={6}>

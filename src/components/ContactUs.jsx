@@ -26,7 +26,7 @@ export default function ContactUs(props) {
             language={props.language}
             setLanguage={props.setLanguage}
         />
-        <Container style={{marginTop:"100px", height:"71vh"}}>
+        <Container style={{marginTop:"100px", minHeight:"71vh"}}>
             <h1 className="my-4">Contact Us</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formName">
