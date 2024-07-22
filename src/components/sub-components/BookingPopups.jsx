@@ -1,3 +1,5 @@
+import { Form } from "react-bootstrap";
+
 const NONE = 0, LOGIN = 1, SIGNUP = 2, CONFIRM = 3;
 const CATEGORY = 0, SERVICE = 1, DATE = 2, TIME = 3, MAKE_RECURRING = 4;
 
@@ -11,6 +13,25 @@ export default function BookingPopups(props) {
                 (dd>9 ? '' : '0') + dd
                ].join('/');
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (e.currentTarget.checkValidity()) {
+            switch (props.popup) {
+                case LOGIN:
+                    props.stateChange(CONFIRM);
+                    break;
+                case SIGNUP:
+                    props.stateChange(LOGIN);
+                    break;
+                case CONFIRM:
+                    props.stateChange(NONE);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     const showPopup = () => {
         switch (props.popup) {
@@ -27,16 +48,16 @@ export default function BookingPopups(props) {
                                     <h1 className="text-primary h3">Login</h1>
                                     <button className="btn btn-dark mb-3 me-1 mt-1" onClick={() => {props.stateChange(NONE)}}>X</button>
                                 </div>
-                                <div className="d-flex flex-column p-4">
-                                    <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email" />
-                                    </div>
-                                    <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="Password" />
-                                    </div>
-                                    <button className="btn btn-primary" onClick={() => {props.stateChange(CONFIRM)}}>Login</button>
+                                <Form className="d-flex flex-column p-4" onSubmit={handleSubmit}>
+                                    <Form.Group controlId="formEmail" className="mb-3">
+                                        <Form.Control type="email" placeholder="Enter your email" required/>
+                                    </Form.Group>
+                                    <Form.Group controlId="formEmail" className="mb-3">
+                                        <Form.Control type="password" placeholder="Password" required/>
+                                    </Form.Group>
+                                    <button type="submit" className="btn btn-primary">Login</button>
                                     <p onClick={() => {props.stateChange(SIGNUP)}} style={{cursor:"pointer"}}><u>Don't have an account? Create one!</u></p>
-                                </div>
+                                </Form>
                             </div>
                         </div>
                     </div >
@@ -50,24 +71,22 @@ export default function BookingPopups(props) {
                                     <h1 className='text-primary h3'>Sign Up</h1>
                                     <button className="btn btn-dark mb-3 me-1 mt-1" onClick={() => {props.stateChange(NONE)}}>X</button>
                                 </div>
-                                <div className='d-flex flex-column p-4'>
-                                    <div className="input-group mb-3">
-                                        <input id="signupFirstName" type="text" className="form-control" placeholder="First Name" aria-label="First Name" aria-describedby="First Name" />
-                                    </div>
-                                    <div className="input-group mb-3">
-                                        <input id="signupLastName" type="text" className="form-control" placeholder="Last Name" aria-label="Last Name" aria-describedby="Last Name" />
-                                    </div>
-                                    <div className="input-group mb-3">
-                                        <input id="signupEmail" type="text" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email" />
-                                    </div>
-                                    <div className="input-group mb-3">
-                                        <input id="signupPassword" type="text" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="Password" />
-                                    </div>
-                                    <div className="input-group mb-3">
-                                        <input id="signupPasswordConfirm" type="text" className="form-control" placeholder="Password Confirm" aria-label="Password Confirm" aria-describedby="Password Confirm" />
-                                    </div>
-                                    <button className="btn btn-primary" onClick={() => {props.stateChange(LOGIN)}}>Sign Up</button>
-                                </div>
+                                <Form className="d-flex flex-column p-4" onSubmit={handleSubmit}>
+                                    <Form.Group controlId="signupFirstName" className="mb-3">
+                                        <Form.Control type="text" placeholder="First Name" required />
+                                    </Form.Group>
+                                    <Form.Group controlId="signupLastName" className="mb-3">
+                                        <Form.Control type="text" placeholder="Last Name" required />
+                                    </Form.Group>
+                                    <Form.Group controlId="signupEmail" className="mb-3">
+                                        <Form.Control type="email" placeholder="Email" required />
+                                    </Form.Group>
+                                    <Form.Group controlId="signupPassword" className="mb-3">
+                                        <Form.Control type="password" placeholder="Password" required />
+                                    </Form.Group>
+                                    <button type="submit" className="btn btn-primary">Sign Up</button>
+                                    <p onClick={() => {props.stateChange(LOGIN)}} style={{cursor: "pointer"}}><u>Already have an account? Log in!</u></p>
+                                </Form>
                             </div>
                         </div>
                     </div>
